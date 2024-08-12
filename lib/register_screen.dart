@@ -25,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           );
         });
-
+//just testing might delete later
     try {
       if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
