@@ -4,7 +4,7 @@ import 'package:year_in_pixels/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final void Function()? onPressed;
-  LoginScreen({super.key, required this.onPressed});
+  const LoginScreen({super.key, required this.onPressed});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -65,12 +65,12 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   image: AssetImage('images/user.png'),
                   width: 181,
                   height: 181,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Column(
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     k_textField(
                         labelText: 'email', controller: emailController),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     k_textField(
@@ -86,32 +86,32 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: passwordController,
                     ),
                     GestureDetector(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 50.0),
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 50.0),
                         child: Text('Forget password?'),
                       ),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
                       Color(0xFFF96635),
                     ),
                   ),
                   onPressed: signIn,
-                  child: Text(
+                  child: const Text(
                     'Sign in',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   child: Divider(
                     color: Color(0xFFF9A822),
                     height: 10,
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     endIndent: 30,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -132,13 +132,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       width: 60,
                       height: 60,
-                      child: Icon(
+                      child: const Icon(
                         Icons.apple,
                         size: 35,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     GestureDetector(
@@ -149,23 +149,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         width: 60,
                         height: 60,
-                        child: Image(
+                        child: const Image(
                           image: AssetImage("images/google.png"),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Don\'t have an account yet?'),
+                    const Text('Don\'t have an account yet?'),
                     TextButton(
                       onPressed: widget.onPressed,
-                      child: Text(
+                      child: const Text(
                         'Sign up',
                         style: TextStyle(
                           color: Color(0xFFF96635),
@@ -195,30 +195,30 @@ class k_textField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: TextFormField(
         controller: controller,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           labelText: labelText,
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             color: Colors.black,
           ),
           filled: true,
-          fillColor: Color(0xFFF9A822),
+          fillColor: const Color(0xFFF9A822),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors.white, // Set the border color to white
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors
                   .white, // Set the border color to white for enabled state
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors
                   .white, // Set the border color to white for focused state
             ),
