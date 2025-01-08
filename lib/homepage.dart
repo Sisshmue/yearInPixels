@@ -12,7 +12,7 @@ import 'package:popover/popover.dart';
 import 'record.dart';
 
 class Homepage extends StatefulWidget {
-  Homepage({super.key});
+  const Homepage({super.key});
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -56,11 +56,11 @@ class _HomepageState extends State<Homepage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                 child: ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.person,
                     size: 30,
                   ),
-                  title: Text(
+                  title: const Text(
                     "Profile",
                     style: TextStyle(
                       fontSize: 20,
@@ -73,10 +73,10 @@ class _HomepageState extends State<Homepage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
                 child: ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.logout,
                   ),
-                  title: Text("Log out"),
+                  title: const Text("Log out"),
                   onTap: signOut,
                 ),
               )
@@ -96,8 +96,8 @@ class _HomepageState extends State<Homepage> {
               //   _myBox.get("$day & $month"),
               // );
             },
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
               child: Icon(Icons.check),
             ),
           )
@@ -108,14 +108,14 @@ class _HomepageState extends State<Homepage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 150,
               ),
               AvatarGlow(
                 glowColor: colorProvider.getColor,
                 glowCount: 5,
                 repeat: true,
-                duration: Duration(seconds: 5),
+                duration: const Duration(seconds: 5),
                 child: Container(
                   decoration: BoxDecoration(
                     // elevation: 30,
@@ -186,7 +186,7 @@ class _HomepageState extends State<Homepage> {
                           : colorProvider.getBoxColor1,
                       cirnum: 1,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       //height: 20,
                       width: 20,
                     ),
@@ -197,7 +197,7 @@ class _HomepageState extends State<Homepage> {
                           : colorProvider.getBoxColor2,
                       cirnum: 2,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       // height: 20,
                       width: 20,
                     ),
@@ -208,7 +208,7 @@ class _HomepageState extends State<Homepage> {
                           : colorProvider.getBoxColor3,
                       cirnum: 3,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       //height: 20,
                       width: 20,
                     ),
@@ -219,7 +219,7 @@ class _HomepageState extends State<Homepage> {
                           : colorProvider.getBoxColor4,
                       cirnum: 4,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       //height: 20,
                       width: 20,
                     ),
@@ -234,7 +234,7 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               //)
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
             ],

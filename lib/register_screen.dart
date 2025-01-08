@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'homepage.dart';
 
 class RegisterScreen extends StatefulWidget {
   final void Function()? onPressed;
-  RegisterScreen({super.key, required this.onPressed});
+  const RegisterScreen({super.key, required this.onPressed});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -42,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       //stop circling
       Navigator.pop(context);
       //show error message
-      showErrorMessage('Incorrect email or password');
+      showErrorMessage(e.toString());
     }
   }
 
@@ -58,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 color: Colors.white,
               ),
             ),
-            backgroundColor: Color(0xFFF96635),
+            backgroundColor: const Color(0xFFF96635),
           );
         });
   }
@@ -66,19 +65,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8EDD9),
+      backgroundColor: const Color(0xFFF8EDD9),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   image: AssetImage('images/user.png'),
                   width: 181,
                   height: 181,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Column(
@@ -86,14 +85,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     k_textField(
                         labelText: 'email', controller: emailController),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     k_textField(
                       labelText: 'password',
                       controller: passwordController,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     k_textField(
@@ -102,25 +101,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(
+                  style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(
                       Color(0xFFF96635),
                     ),
                   ),
                   onPressed: signUp,
-                  child: Text(
+                  child: const Text(
                     'Sign up',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   child: Divider(
                     color: Color(0xFFF9A822),
                     height: 10,
@@ -128,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     endIndent: 30,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -141,13 +140,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       width: 60,
                       height: 60,
-                      child: Icon(
+                      child: const Icon(
                         Icons.apple,
                         size: 35,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     GestureDetector(
@@ -158,23 +157,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         width: 60,
                         height: 60,
-                        child: Image(
+                        child: const Image(
                           image: AssetImage("images/google.png"),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Already have an accout?'),
+                    const Text('Already have an accout?'),
                     TextButton(
                       onPressed: widget.onPressed,
-                      child: Text(
+                      child: const Text(
                         'Log In ',
                         style: TextStyle(
                           color: Color(0xFFF96635),
@@ -196,7 +195,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 class k_textField extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
-  k_textField({required this.labelText, required this.controller});
+  const k_textField(
+      {super.key, required this.labelText, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -204,30 +204,30 @@ class k_textField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: TextFormField(
         controller: controller,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           labelText: labelText,
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             color: Colors.black,
           ),
           filled: true,
-          fillColor: Color(0xFFF9A822),
+          fillColor: const Color(0xFFF9A822),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors.white, // Set the border color to white
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors
                   .white, // Set the border color to white for enabled state
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors
                   .white, // Set the border color to white for focused state
             ),
