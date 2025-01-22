@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:year_in_pixels/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final void Function()? onPressed;
