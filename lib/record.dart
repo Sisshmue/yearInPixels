@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:year_in_pixels/colorProvider.dart';
 
 class Record extends StatefulWidget {
   const Record({super.key});
@@ -13,14 +15,14 @@ class Record extends StatefulWidget {
 
 class _RecordState extends State<Record> {
   final _myBox = Hive.box('myBox');
+  CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
-  CalendarFormat _calendarFormat = CalendarFormat.month;
 
-  // Get color for a specific day
-  Color? _getColorForDay(DateTime day) {
-    String dateKey = '${day.day} & ${DateFormat('MMMM').format(day)}';
-    dynamic colorValue = _myBox.get(dateKey);
+  // Function to get the mood color for a specific day
+  Color? getMoodColor(DateTime date) {
+    String formattedDate = '${date.day} & ${DateFormat('MMMM').format(date)}';
+    dynamic colorValue = _myBox.get(formattedDate);
     if (colorValue != null) {
       return colorValue as Color;
     }
@@ -29,26 +31,28 @@ class _RecordState extends State<Record> {
 
   @override
   Widget build(BuildContext context) {
+    var colorProvider = Provider.of<ColorProvider>(context);
     return Scaffold(
       backgroundColor: const Color(0xFFF8EDD9),
       appBar: AppBar(
+        backgroundColor: const Color(0xFFF96635),
         title: Text(
-          'Your Year in Pixels',
-          style: GoogleFonts.poppins(
+          'Your Mood Record',
+          style: GoogleFonts.outfit(
             textStyle: const TextStyle(
-              fontSize: 20,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
       ),
       body: Column(
         children: [
+          const SizedBox(height: 20),
           TableCalendar(
-            firstDay: DateTime.utc(2024, 1, 1),
-            lastDay: DateTime.utc(2024, 12, 31),
+            firstDay: DateTime.utc(2023, 1, 1),
+            lastDay: DateTime.utc(2025, 12, 31),
             focusedDay: _focusedDay,
             calendarFormat: _calendarFormat,
             selectedDayPredicate: (day) {
@@ -66,31 +70,32 @@ class _RecordState extends State<Record> {
               });
             },
             calendarStyle: CalendarStyle(
+              outsideDaysVisible: false,
               weekendTextStyle: const TextStyle(color: Colors.red),
+              holidayTextStyle: const TextStyle(color: Colors.red),
               todayDecoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.3),
+                color: colorProvider.getColor,
                 shape: BoxShape.circle,
               ),
               selectedDecoration: const BoxDecoration(
-                color: Colors.blue,
+                color: Color(0xFFF96635),
                 shape: BoxShape.circle,
               ),
             ),
             calendarBuilders: CalendarBuilders(
-              defaultBuilder: (context, day, focusedDay) {
-                Color? dayColor = _getColorForDay(day);
+              defaultBuilder: (context, date, _) {
+                Color? moodColor = getMoodColor(date);
                 return Container(
-                  margin: const EdgeInsets.all(4),
+                  margin: const EdgeInsets.all(4.0),
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: dayColor,
+                    color: moodColor,
                   ),
-                  child: Center(
-                    child: Text(
-                      '${day.day}',
-                      style: TextStyle(
-                        color: dayColor != null ? Colors.white : Colors.black,
-                      ),
+                  child: Text(
+                    '${date.day}',
+                    style: TextStyle(
+                      color: moodColor != null ? Colors.white : Colors.black,
                     ),
                   ),
                 );
@@ -106,7 +111,7 @@ class _RecordState extends State<Record> {
               children: [
                 Text(
                   'Mood Legend:',
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.outfit(
                     textStyle: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -121,7 +126,7 @@ class _RecordState extends State<Record> {
                     _buildLegendItem('Good', Colors.orangeAccent),
                     _buildLegendItem('Okay', Colors.blueAccent),
                     _buildLegendItem('Bad', Colors.red),
-                    _buildLegendItem('Terrible', Colors.black),
+                    _buildLegendItem('Awful', Colors.black),
                   ],
                 ),
               ],
@@ -146,7 +151,11 @@ class _RecordState extends State<Record> {
         const SizedBox(width: 4),
         Text(
           label,
-          style: GoogleFonts.poppins(fontSize: 12),
+          style: GoogleFonts.poppins(
+            textStyle: const TextStyle(
+              fontSize: 12,
+            ),
+          ),
         ),
       ],
     );

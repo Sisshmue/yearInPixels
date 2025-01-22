@@ -13,54 +13,54 @@ class ColorBox extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            k_colorBox(color: Colors.red),
-            SizedBox(
+            KColorBox(color: Colors.red),
+            const SizedBox(
               width: 10,
             ),
-            k_colorBox(color: Colors.green),
-            SizedBox(
+            KColorBox(color: Colors.green),
+            const SizedBox(
               width: 10,
             ),
-            k_colorBox(
+            KColorBox(
               color: Colors.yellow.shade100,
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            k_colorBox(color: Colors.black),
-            SizedBox(
+            KColorBox(color: Colors.black),
+            const SizedBox(
               width: 10,
             ),
-            k_colorBox(
+            KColorBox(
               color: Colors.blue,
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            k_colorBox(color: Colors.purple),
-            SizedBox(
+            KColorBox(color: Colors.purple),
+            const SizedBox(
               width: 10,
             ),
-            k_colorBox(color: Colors.pinkAccent),
-            SizedBox(
+            KColorBox(color: Colors.pinkAccent),
+            const SizedBox(
               width: 10,
             ),
-            k_colorBox(
+            KColorBox(
               color: Colors.indigo,
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            k_colorBox(color: Colors.grey),
-            SizedBox(
+            KColorBox(color: Colors.grey),
+            const SizedBox(
               width: 10,
             ),
-            k_colorBox(
+            KColorBox(
               color: Colors.lime,
             ),
           ],
@@ -70,10 +70,10 @@ class ColorBox extends StatelessWidget {
   }
 }
 
-class k_colorBox extends StatelessWidget {
+class KColorBox extends StatelessWidget {
   Color color;
 
-  k_colorBox({
+  KColorBox({
     super.key,
     required this.color,
   });

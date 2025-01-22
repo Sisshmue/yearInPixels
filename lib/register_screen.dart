@@ -15,33 +15,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final confirmPasswordController = TextEditingController();
 
   void signUp() async {
+    // Show loading dialog
     showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Color(0xFFF96635),
-            ),
-          );
-        });
-//just testing might delete later
+      context: context,
+      barrierDismissible: false, // Prevent dismissing by tapping outside
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Color(0xFFF96635),
+          ),
+        );
+      },
+    );
+
     try {
       if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
         );
+
+        // If we get here, sign up was successful
+        if (mounted) {
+          // Check if widget is still mounted
+          Navigator.of(context).pop(); // Close the loading dialog
+        }
       } else {
-        Navigator.pop(context);
-        showErrorMessage("Passwords are not the same");
+        // Close loading dialog before showing error
+        if (mounted) {
+          Navigator.of(context).pop();
+          showErrorMessage("Passwords are not the same");
+        }
       }
-      //stop circling
-      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      //stop circling
-      Navigator.pop(context);
-      //show error message
-      showErrorMessage(e.toString());
+      // Close loading dialog before showing error
+      if (mounted) {
+        Navigator.of(context).pop();
+        showErrorMessage(
+            e.code); // Use e.code instead of e.toString() for cleaner errors
+      }
+    } catch (e) {
+      // Handle any other errors
+      if (mounted) {
+        Navigator.of(context).pop();
+        showErrorMessage("An error occurred");
+      }
     }
   }
 
@@ -83,19 +101,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    k_textField(
-                        labelText: 'email', controller: emailController),
+                    KTextField(labelText: 'email', controller: emailController),
                     const SizedBox(
                       height: 20,
                     ),
-                    k_textField(
+                    KTextField(
                       labelText: 'password',
                       controller: passwordController,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    k_textField(
+                    KTextField(
                       labelText: 'Confirm Password',
                       controller: confirmPasswordController,
                     )
@@ -192,10 +209,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
-class k_textField extends StatelessWidget {
+class KTextField extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
-  const k_textField(
+  const KTextField(
       {super.key, required this.labelText, required this.controller});
 
   @override

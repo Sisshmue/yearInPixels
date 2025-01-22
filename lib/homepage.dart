@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:year_in_pixels/colorBox.dart';
+import 'package:year_in_pixels/color_box.dart';
 import 'package:year_in_pixels/colorProvider.dart';
 import 'package:popover/popover.dart';
 import 'record.dart';
@@ -26,7 +26,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
     // Update the state every second
-    Timer.periodic(Duration(seconds: 1), (Timer t) => setState(() {}));
+    Timer.periodic(const Duration(seconds: 1), (Timer t) => setState(() {}));
   }
 
   void signOut() {
@@ -44,10 +44,10 @@ class _HomepageState extends State<Homepage> {
     var colorProvider = Provider.of<ColorProvider>(context);
 
     return Scaffold(
-      backgroundColor: Color(0xFFF8EDD9),
+      backgroundColor: const Color(0xFFF8EDD9),
       drawer: Drawer(
         width: 300,
-        backgroundColor: Color(0xFFF8EDD9),
+        backgroundColor: const Color(0xFFF8EDD9),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,10 +91,11 @@ class _HomepageState extends State<Homepage> {
             onTap: () {
               _myBox.put('$day & $month', colorProvider.getColor);
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Record()));
-              // print(
-              //   _myBox.get("$day & $month"),
-              // );
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Record(),
+                ),
+              );
             },
             child: const Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
@@ -175,60 +176,60 @@ class _HomepageState extends State<Homepage> {
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(30),
                 ),
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                margin: EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                margin: const EdgeInsets.symmetric(horizontal: 50),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    k_colorBox(
-                      k_color: colorProvider.getBoxColor1 == Colors.white10
+                    KColorBox(
+                      kColor: colorProvider.getBoxColor1 == Colors.white10
                           ? Colors.green
                           : colorProvider.getBoxColor1,
-                      cirnum: 1,
+                      cirNum: 1,
                     ),
                     const SizedBox(
                       //height: 20,
                       width: 20,
                     ),
-                    k_colorBox(
+                    KColorBox(
                       // k_color: Colors.orangeAccent,
-                      k_color: colorProvider.getBoxColor2 == Colors.white10
+                      kColor: colorProvider.getBoxColor2 == Colors.white10
                           ? Colors.orangeAccent
                           : colorProvider.getBoxColor2,
-                      cirnum: 2,
+                      cirNum: 2,
                     ),
                     const SizedBox(
                       // height: 20,
                       width: 20,
                     ),
-                    k_colorBox(
+                    KColorBox(
                       //k_color: Colors.blueAccent,
-                      k_color: colorProvider.getBoxColor3 == Colors.white10
+                      kColor: colorProvider.getBoxColor3 == Colors.white10
                           ? Colors.blueAccent
                           : colorProvider.getBoxColor3,
-                      cirnum: 3,
+                      cirNum: 3,
                     ),
                     const SizedBox(
                       //height: 20,
                       width: 20,
                     ),
-                    k_colorBox(
+                    KColorBox(
                       //k_color: Colors.red,
-                      k_color: colorProvider.getBoxColor4 == Colors.white10
+                      kColor: colorProvider.getBoxColor4 == Colors.white10
                           ? Colors.red
                           : colorProvider.getBoxColor4,
-                      cirnum: 4,
+                      cirNum: 4,
                     ),
                     const SizedBox(
                       //height: 20,
                       width: 20,
                     ),
-                    k_colorBox(
+                    KColorBox(
                       //k_color: Colors.black,
-                      k_color: colorProvider.getBoxColor5 == Colors.white10
+                      kColor: colorProvider.getBoxColor5 == Colors.white10
                           ? Colors.black
                           : colorProvider.getBoxColor5,
-                      cirnum: 5,
+                      cirNum: 5,
                     ),
                   ],
                 ),
@@ -245,13 +246,13 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
-class k_colorBox extends StatelessWidget {
-  Color k_color;
-  int cirnum;
-  k_colorBox({
+class KColorBox extends StatelessWidget {
+  Color kColor;
+  int cirNum;
+  KColorBox({
     super.key,
-    required this.k_color,
-    required this.cirnum,
+    required this.kColor,
+    required this.cirNum,
   });
 
   @override
@@ -260,15 +261,15 @@ class k_colorBox extends StatelessWidget {
     var colorProvider = Provider.of<ColorProvider>(context);
     return GestureDetector(
       onTap: () {
-        colorProvider.setColor(k_color);
+        colorProvider.setColor(kColor);
       },
       onLongPress: () {
-        colorProvider.setCirnum(cirnum);
+        colorProvider.setCirnum(cirNum);
         showPopover(
           backgroundColor: Colors.black12,
           radius: 30,
           context: context,
-          bodyBuilder: (context) => ColorBox(),
+          bodyBuilder: (context) => const ColorBox(),
           width: 250,
           height: 150,
         );
@@ -278,7 +279,7 @@ class k_colorBox extends StatelessWidget {
         height: 35,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: k_color,
+          color: kColor,
         ),
       ),
     );
