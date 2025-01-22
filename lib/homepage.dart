@@ -54,21 +54,8 @@ class _HomepageState extends State<Homepage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                child: ListTile(
-                  leading: const Icon(
-                    Icons.person,
-                    size: 30,
-                  ),
-                  title: const Text(
-                    "Profile",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
+                padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
+                child: Text('${user?.email}'),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
