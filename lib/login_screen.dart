@@ -30,7 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
         email: emailController.text,
         password: passwordController.text,
       );
-      Navigator.pop(context);
+      if (mounted) {
+        // Check if widget is still mounted
+        Navigator.of(context).pop(); // Close the loading dialog
+      }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       //show error message
