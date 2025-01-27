@@ -72,6 +72,9 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
         backgroundColor: colorProvider.getColor,
         actions: [
           GestureDetector(

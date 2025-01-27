@@ -4,11 +4,11 @@ class ColorProvider extends ChangeNotifier {
   int cirNum = 0;
   Color kColor = Colors.white10;
   String pText = 'How was your day like?';
-  Color k_boxColor1 = Colors.white10;
-  Color k_boxColor2 = Colors.white10;
-  Color k_boxColor3 = Colors.white10;
-  Color k_boxColor4 = Colors.white10;
-  Color k_boxColor5 = Colors.white10;
+  Color k_boxColor1 = Colors.green;
+  Color k_boxColor2 = Colors.orangeAccent;
+  Color k_boxColor3 = Colors.blueAccent;
+  Color k_boxColor4 = Colors.red;
+  Color k_boxColor5 = Colors.black;
 
   Color get getColor => kColor;
   String get getpText => pText;

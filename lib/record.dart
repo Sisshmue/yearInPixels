@@ -35,7 +35,11 @@ class _RecordState extends State<Record> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8EDD9),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF96635),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+        centerTitle: true,
+        backgroundColor: colorProvider.getColor,
         title: Text(
           'Your Mood Record',
           style: GoogleFonts.outfit(
@@ -122,11 +126,11 @@ class _RecordState extends State<Record> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _buildLegendItem('Amazing', Colors.green),
-                    _buildLegendItem('Good', Colors.orangeAccent),
-                    _buildLegendItem('Okay', Colors.blueAccent),
-                    _buildLegendItem('Bad', Colors.red),
-                    _buildLegendItem('Awful', Colors.black),
+                    _buildLegendItem('Amazing', colorProvider.getBoxColor1),
+                    _buildLegendItem('Good', colorProvider.getBoxColor2),
+                    _buildLegendItem('Okay', colorProvider.getBoxColor3),
+                    _buildLegendItem('Bad', colorProvider.getBoxColor4),
+                    _buildLegendItem('Awful', colorProvider.getBoxColor5),
                   ],
                 ),
               ],
