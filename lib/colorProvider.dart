@@ -20,7 +20,7 @@ class ColorProvider extends ChangeNotifier {
   int get getCirNum => cirNum;
 
   void setCirnum(int cirNum) {
-    cirNum = cirNum;
+    this.cirNum = cirNum;
     notifyListeners();
   }
 
